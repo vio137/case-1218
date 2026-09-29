@@ -94,6 +94,8 @@ a{color:var(--amber);text-decoration:none}
 .step.ok{color:var(--ink)}
 .step.blocker{background:repeating-linear-gradient(45deg,rgba(212,80,74,.16) 0 8px,transparent 8px 16px)}
 .step .lbl{position:relative;z-index:2;line-height:1.25}
+.step.tiny{align-items:center}
+.step.tiny .lbl{writing-mode:vertical-rl;font-size:8.5px;letter-spacing:.04em;line-height:1.1}
 .limitline{position:absolute;top:0;bottom:0;width:2px;background:var(--red);z-index:5;right:0}
 .limitline::after{content:'00:22 — TIME UP';position:absolute;top:4px;right:6px;font-family:var(--mono);font-size:9px;color:var(--red);white-space:nowrap}
 .lane-verdict{font-family:var(--mono);font-size:12px;margin-top:12px;letter-spacing:.06em;min-height:20px}
@@ -693,6 +695,7 @@ renderQ('wife');
     steps.forEach(function(s){
       var d=+s.dataset.dur;
       s.style.width=(d/WINDOW*100)+'%';
+      if(d<=10)s.classList.add('tiny');
       meta.push({el:s,start:cum,end:cum+d});cum+=d;
     });
     return meta;
